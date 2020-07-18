@@ -65,6 +65,8 @@ namespace v{
         using reverse_iterator       = std::reverse_iterator<iterator>;
         using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
+        vec3() = default;
+
         vec3(const_reference x, const_reference y, const_reference z):
             p{x, y, z}{}
 
