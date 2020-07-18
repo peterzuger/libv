@@ -34,8 +34,20 @@
 #include <array>
 #include <math.h>
 #include <algorithm>
+#include <stdexcept>
 
 namespace v{
+    namespace impl{
+        [[noreturn]] inline void throw_out_of_range(const char* s){
+#if defined(__cpp_exceptions)
+            throw std::out_of_range(s);
+#else
+            (void)s;
+            terminate();
+#endif /* defined(__cpp_exceptions) */
+        }
+    }
+
     template<typename T>
     class vec3{
         std::array<T, 3> p;
@@ -170,6 +182,18 @@ namespace v{
         }
 
         constexpr const_reference operator[](size_type n)const{
+            return p[n];
+        }
+
+        constexpr reference at(size_type n){
+            if(n >= 3)
+                impl::throw_out_of_range("v::vec3::at");
+            return p[n];
+        }
+
+        constexpr const_reference at(size_type n)const{
+            if(n >= 3)
+                impl::throw_out_of_range("v::vec3::at");
             return p[n];
         }
     };

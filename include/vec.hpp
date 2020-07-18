@@ -36,9 +36,21 @@
 #include <iterator>
 #include <math.h>
 #include <numeric>
+#include <stdexcept>
 #include <utility>
 
 namespace v{
+    namespace impl{
+        [[noreturn]] inline void throw_out_of_range(const char* s){
+#if defined(__cpp_exceptions)
+            throw std::out_of_range(s);
+#else
+            (void)s;
+            terminate();
+#endif /* defined(__cpp_exceptions) */
+        }
+    }
+
     template<typename T, std::size_t N>
     class vec{
         std::array<T, N> p;
@@ -165,6 +177,18 @@ namespace v{
         }
 
         constexpr const_reference operator[](size_type n)const{
+            return p[n];
+        }
+
+        constexpr reference at(size_type n){
+            if(n >= N)
+                impl::throw_out_of_range("v::vec::at");
+            return p[n];
+        }
+
+        constexpr const_reference at(size_type n)const{
+            if(n >= N)
+                impl::throw_out_of_range("v::vec::at");
             return p[n];
         }
     };
