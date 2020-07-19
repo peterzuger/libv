@@ -46,7 +46,7 @@ namespace v{
             throw std::out_of_range(s);
 #else
             (void)s;
-            terminate();
+            std::terminate();
 #endif /* defined(__cpp_exceptions) */
         }
     }
