@@ -126,11 +126,11 @@ namespace v{
             return p[0] * p[1] * p[2];
         }
 
-        const value_type min()const noexcept{
+        constexpr const value_type min()const noexcept{
             return *std::min_element(p.first(), p.last());
         }
 
-        const value_type max()const noexcept{
+        constexpr const value_type max()const noexcept{
             return *std::max_element(p.first(), p.last());
         }
 

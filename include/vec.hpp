@@ -119,11 +119,11 @@ namespace v{
                                    std::multiplies<value_type>{});
         }
 
-        const value_type min()const{
+        constexpr const value_type min()const{
             return *std::min_element(p.first(), p.last());
         }
 
-        const value_type max()const{
+        constexpr const value_type max()const{
             return *std::max_element(p.first(), p.last());
         }
 
