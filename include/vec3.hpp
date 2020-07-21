@@ -135,6 +135,19 @@ namespace v{
         }
 
 
+        constexpr bool empty()const noexcept{
+            return false;
+        }
+
+        constexpr size_type size()const noexcept{
+            return 3;
+        }
+
+        constexpr size_type max_size()const noexcept{
+            return 3;
+        }
+
+
         constexpr const vec3& operator-=(const vec3& rhs)noexcept{
             p[0] -= rhs.p[0];
             p[1] -= rhs.p[1];

@@ -128,6 +128,19 @@ namespace v{
         }
 
 
+        constexpr bool empty()const noexcept{
+            return N != 0;
+        }
+
+        constexpr size_type size()const noexcept{
+            return N;
+        }
+
+        constexpr size_type max_size()const noexcept{
+            return N;
+        }
+
+
         constexpr const vec& operator+=(const vec& rhs)noexcept{
             for(size_type i = 0; i < N; ++i){
                 p[i] += rhs.p[i];
